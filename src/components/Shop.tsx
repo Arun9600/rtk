@@ -1,5 +1,5 @@
 import React from "react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../features/hooks";
 import { getProductsDataInList } from "../features/ProductsListSlice";
 import type { productsListDatas, CartData } from "../App.types";
@@ -10,16 +10,24 @@ import ProductsListSkeleton from "./ProductsListSkeleton";
 import { add } from "../features/CartSlice";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { useGetAllProductsQuery } from "../features/ApiSlice";
+import { useGetProductDetailQuery } from "../features/ApiSlice";
 const Shop: React.FC = () => {
   const dispatch = useAppDispatch();
-  const datas = useAppSelector((state) => state.productsList.datas);
-  const loading = useAppSelector((state) => state.productsList.loading);
-  const error = useAppSelector((state) => state.productsList.error);
-  useEffect(() => {
-    void dispatch(getProductsDataInList());
-  }, [dispatch]);
-  const productDetailEvent = (productId: number): void => {
-    void dispatch(productDetailsFunc(productId));
+  // const datas = useAppSelector((state) => state.productsList.datas);
+  // const loading = useAppSelector((state) => state.productsList.loading);
+  // const error = useAppSelector((state) => state.productsList.error);
+  // useEffect(() => {
+  //   void dispatch(getProductsDataInList());
+  // }, [dispatch]);
+  // const productDetailEvent = (productId: number): void => {
+  //   void dispatch(productDetailsFunc(productId));
+  // };
+  const [state, setState] = useState<number>(0);
+  const { data: datas, isLoading, error } = useGetAllProductsQuery();
+  const { data } = useGetProductDetailQuery(state, { skip: !state });
+  const productDetailEvent = (id: number): void => {
+    setState(id);
   };
   const addToCart = (data: CartData): void => {
     void dispatch(add(data));
@@ -46,7 +54,7 @@ const Shop: React.FC = () => {
                 Shop
               </Typography>
             </Grid>
-            {loading ? (
+            {isLoading ? (
               <ProductsListSkeleton />
             ) : (
               datas?.map((item: productsListDatas) => (
@@ -95,7 +103,7 @@ const Shop: React.FC = () => {
                     <Box>
                       <Grid container>
                         <Grid item xl={12}>
-                          <Link to={`/productdetail/${item.title}`}>
+                          <Link to={`/productdetail/${item.id}/${item.title}`}>
                             <Typography
                               variant="h2"
                               style={{
@@ -122,7 +130,7 @@ const Shop: React.FC = () => {
                           color="success"
                           onClick={() => {
                             productDetailEvent(item.id);
-                            navigate(`/productdetail/${item.title}`);
+                            navigate(`/productdetail/${item.id}/${item.title}`);
                           }}
                         >
                           View Product
@@ -160,7 +168,7 @@ const Shop: React.FC = () => {
                 xs={12}
                 style={{ textAlign: "center", padding: "30px " }}
               >
-                {error}
+                "Something Went Wrong"
               </Grid>
             ) : (
               ""

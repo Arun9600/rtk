@@ -86,7 +86,7 @@ const ProductsLimit: React.FC = () => {
                       <Grid container>
                         <Grid item xl={12}>
                           <Link
-                            to={`/productdetail/${item.title}`}
+                            to={`/productdetail/${item.id}/${item.title}`}
                             onClick={() => {
                               productDetailEvent(item.id);
                             }}

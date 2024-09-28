@@ -4,13 +4,19 @@ import { Typography, Box, Container, Grid, Button } from "@mui/material";
 import type { productsDetailData } from "../App.types";
 import { add } from "../features/CartSlice";
 import ProductsDetailsSkeleton from "./ProductsDetailsSkeleton";
+import { useGetProductDetailQuery } from "../features/ApiSlice";
+import { useParams } from "react-router-dom";
 const ProductDetails: React.FC = () => {
   const dispatch = useAppDispatch();
-  const data = useAppSelector(
-    (state) => state.productDetails.datas
-  ) as productsDetailData;
-  const loading = useAppSelector((state) => state.productDetails.loading);
-  const error = useAppSelector((state) => state.productDetails.error);
+  // const data = useAppSelector(
+  //   (state) => state.productDetails.datas
+  // ) as productsDetailData;
+  // const loading = useAppSelector((state) => state.productDetails.loading);
+  // const error = useAppSelector((state) => state.productDetails.error);
+  const { id } = useParams();
+  const { data, isLoading, error } = useGetProductDetailQuery(
+    parseInt(id ?? "0", 10)
+  );
   const addToCart = (data: productsDetailData): void => {
     void dispatch(add(data));
   };
@@ -22,7 +28,7 @@ const ProductDetails: React.FC = () => {
             container
             style={{ alignItems: "center", justifyContent: "center" }}
           >
-            {loading ? (
+            {isLoading ? (
               <ProductsDetailsSkeleton />
             ) : (
               <>
@@ -80,7 +86,9 @@ const ProductDetails: React.FC = () => {
                     variant="outlined"
                     color="success"
                     onClick={() => {
-                      addToCart(data);
+                      if (data) {
+                        addToCart(data);
+                      }
                     }}
                   >
                     Add to Cart
@@ -98,7 +106,7 @@ const ProductDetails: React.FC = () => {
                 xs={12}
                 style={{ textAlign: "center", padding: "30px " }}
               >
-                {error}
+                'Something Went Wrong'
               </Grid>
             ) : (
               ""
