@@ -1,5 +1,6 @@
 import React from "react";
-import { Box, Container, Grid, Typography } from "@mui/material";
+import { Box, Container, Typography } from "@mui/material";
+import Grid from "@mui/material/Grid2";
 import ProductsLimit from "./ProductsLimit";
 import ProductsCategoriesSkeleton from "./ProductsCategoriesSkeleton";
 import { useGetProductCategoryQuery } from "../features/ApiSlice";
@@ -7,14 +8,17 @@ const Home: React.FC = () => {
   const { data, error, isLoading } = useGetProductCategoryQuery();
   return (
     <>
-      <Box sx={{ padding: "40px 0", backgroundColor: "#f1f1f1" }}>
+      <Box
+        sx={{
+          padding: "40px 0",
+          backgroundColor: "#f1f1f1",
+        }}
+        className="section"
+      >
         <Container>
           <Grid container>
             <Grid
-              item
-              xl={12}
-              md={12}
-              xs={12}
+              size={{ xl: 12, lg: 12, md: 12, sm: 12, xs: 12 }}
               style={{
                 textAlign: "center",
                 marginBottom: "30px",
@@ -29,12 +33,7 @@ const Home: React.FC = () => {
             ) : (
               data?.map((item: string) => (
                 <Grid
-                  item
-                  xl={3}
-                  lg={3}
-                  md={6}
-                  sm={6}
-                  xs={12}
+                  size={{ xl: 3, lg: 3, md: 6, sm: 6, xs: 12 }}
                   key={item}
                   style={{
                     textAlign: "center",
@@ -59,12 +58,7 @@ const Home: React.FC = () => {
             )}
             {error ? (
               <Grid
-                item
-                xl={12}
-                lg={12}
-                md={12}
-                sm={12}
-                xs={12}
+                size={{ xl: 12, lg: 12, md: 12, sm: 12, xs: 12 }}
                 style={{ textAlign: "center", padding: "30px " }}
               >
                 'Something went wrong';

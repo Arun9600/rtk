@@ -2,7 +2,6 @@ import React from "react";
 import {
   Box,
   Container,
-  Grid,
   Typography,
   TableContainer,
   Table,
@@ -13,6 +12,7 @@ import {
   Paper,
   Skeleton,
 } from "@mui/material";
+import Grid from "@mui/material/Grid2";
 import { useAppSelector, useAppDispatch } from "../features/hooks";
 import type { CartData } from "../App.types";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -39,27 +39,14 @@ const Cart: React.FC = () => {
   const subTotal = Math.round(Total as number);
   return (
     <>
-      <Box sx={{ padding: "40px 0" }}>
+      <Box sx={{ padding: "40px 0" }} className="section">
         <Container>
           <Grid container>
             <Grid
-              item
-              xl={12}
-              lg={12}
-              md={12}
-              sm={12}
-              xs={12}
-              style={{ textAlign: "center" }}
+              size={{ xl: 12, lg: 12, md: 12, sm: 12, xs: 12 }}
+              style={{ textAlign: "center", marginBottom: "40px" }}
             >
-              <Typography
-                variant="h4"
-                style={{
-                  fontSize: "40px",
-                  fontWeight: "bold",
-                  textAlign: "center",
-                  marginBottom: "20px",
-                }}
-              >
+              <Typography variant="h4" className="home-title">
                 Cart
               </Typography>
             </Grid>
@@ -70,12 +57,7 @@ const Cart: React.FC = () => {
             <Container>
               <Grid container>
                 <Grid
-                  item
-                  xl={12}
-                  lg={12}
-                  md={12}
-                  sm={12}
-                  xs={12}
+                  size={{ xl: 12, lg: 12, md: 12, sm: 12, xs: 12 }}
                   style={{ textAlign: "center" }}
                 >
                   <Typography variant="h6">No items in your cart</Typography>
@@ -87,10 +69,10 @@ const Cart: React.FC = () => {
           <Box>
             <Container>
               <Grid container>
-                <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
+                <Grid size={{ xl: 12, lg: 12, md: 12, sm: 12, xs: 12 }}>
                   <TableContainer component={Paper}>
                     <Table>
-                      <TableHead>
+                      <TableHead sx={{ backgroundColor: "#f1f1f1" }}>
                         <TableRow>
                           <TableCell>Product Image</TableCell>
                           <TableCell>Product Name</TableCell>
@@ -115,13 +97,20 @@ const Cart: React.FC = () => {
                                 <img
                                   src={item.image}
                                   alt={item.title}
-                                  style={{ width: "100px", height: "100px" }}
+                                  style={{
+                                    width: "100px",
+                                    height: "100px",
+                                    objectFit: "contain",
+                                  }}
                                 />
                               </TableCell>
                               <TableCell>
                                 <Typography
                                   variant="h4"
-                                  style={{ fontSize: "16px" }}
+                                  style={{
+                                    fontSize: "18px",
+                                    fontWeight: "bold",
+                                  }}
                                 >
                                   {item.title}
                                 </Typography>
@@ -135,7 +124,9 @@ const Cart: React.FC = () => {
                                   }}
                                 >
                                   <ControlPointIcon
-                                    style={{ cursor: "pointer" }}
+                                    style={{
+                                      cursor: "pointer",
+                                    }}
                                     onClick={() => {
                                       increaseQuantity(item);
                                     }}
@@ -178,19 +169,18 @@ const Cart: React.FC = () => {
         <Box>
           <Container>
             <Grid container>
-              <Grid item xl={6} lg={6} md={6} sm={6} xs={6}></Grid>
+              <Grid size={{ xl: 6, lg: 6, md: 6, sm: 6, xs: 6 }}></Grid>
               <Grid
-                item
-                xl={6}
-                lg={6}
-                md={6}
-                sm={6}
-                xs={6}
-                style={{ textAlign: "center" }}
+                size={{ xl: 6, lg: 6, md: 6, sm: 6, xs: 6 }}
+                style={{ textAlign: "right" }}
               >
                 <Typography
                   variant="h4"
-                  style={{ fontSize: "18px", fontWeight: "bold" }}
+                  style={{
+                    fontSize: "18px",
+                    fontWeight: "bold",
+                    marginBottom: "20px",
+                  }}
                 >
                   Total: {subTotal}
                 </Typography>

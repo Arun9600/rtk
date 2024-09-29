@@ -1,5 +1,6 @@
 import React from "react";
-import { Box, Container, Grid, Typography, Button } from "@mui/material";
+import { Box, Container, Typography, Button } from "@mui/material";
+import Grid from "@mui/material/Grid2";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import type { productsDetailData } from "../App.types";
@@ -25,12 +26,7 @@ const ProductsLimit: React.FC = () => {
         <Container>
           <Grid container>
             <Grid
-              item
-              xl={12}
-              lg={12}
-              md={12}
-              sm={12}
-              xs={12}
+              size={{ xl: 12, lg: 12, md: 12, sm: 12, xs: 12 }}
               style={{ textAlign: "center", marginBottom: "30px" }}
             >
               <Typography variant="h4" className="home-title">
@@ -42,12 +38,7 @@ const ProductsLimit: React.FC = () => {
             ) : (
               data?.map((item: productsDetailData) => (
                 <Grid
-                  item
-                  xl={4}
-                  lg={4}
-                  md={6}
-                  sm={6}
-                  xs={12}
+                  size={{ xl: 4, lg: 4, md: 6, sm: 6, xs: 12 }}
                   key={item.id}
                   sx={{
                     padding: "0 15px",
@@ -74,7 +65,7 @@ const ProductsLimit: React.FC = () => {
                     </Box>
                     <Box sx={{ marginBottom: "10px" }}>
                       <Grid container>
-                        <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
+                        <Grid size={{ xl: 12, lg: 12, md: 12, sm: 12, xs: 12 }}>
                           <Typography
                             variant="h6"
                             style={{ fontSize: "16px", color: "#000" }}
@@ -86,7 +77,7 @@ const ProductsLimit: React.FC = () => {
                     </Box>
                     <Box>
                       <Grid container>
-                        <Grid item xl={12}>
+                        <Grid size={{ xl: 12, lg: 12, md: 12, sm: 12, xs: 12 }}>
                           <Link
                             to={`/productdetail/${item.id}/${item.title}`}
                             onClick={() => {
@@ -108,7 +99,7 @@ const ProductsLimit: React.FC = () => {
                             </Typography>
                           </Link>
                         </Grid>
-                        <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
+                        <Grid size={{ xl: 12, lg: 12, md: 12, sm: 12, xs: 12 }}>
                           <Typography
                             variant="h6"
                             style={{ fontSize: "18px", color: "#000" }}
@@ -125,12 +116,7 @@ const ProductsLimit: React.FC = () => {
 
             {error ? (
               <Grid
-                item
-                xl={12}
-                lg={12}
-                md={12}
-                sm={12}
-                xs={12}
+                size={{ xl: 12, lg: 12, md: 12, sm: 12, xs: 12 }}
                 style={{ textAlign: "center", padding: "30px " }}
               >
                 'Something Went Wrong'
@@ -144,10 +130,7 @@ const ProductsLimit: React.FC = () => {
             ) : (
               <>
                 <Grid
-                  item
-                  xl={12}
-                  md={12}
-                  sm={12}
+                  size={{ xl: 12, lg: 12, md: 12, sm: 12, xs: 12 }}
                   style={{ textAlign: "center" }}
                 >
                   <Button

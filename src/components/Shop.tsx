@@ -2,7 +2,8 @@ import React from "react";
 import { useState } from "react";
 import { useAppDispatch } from "../features/hooks";
 import type { productsDetailData, CartData } from "../App.types";
-import { Box, Container, Grid, Typography, Button } from "@mui/material";
+import { Box, Container, Typography, Button } from "@mui/material";
+import Grid from "@mui/material/Grid2";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import ProductsListSkeleton from "./ProductsListSkeleton";
 import { add } from "../features/CartSlice";
@@ -24,16 +25,11 @@ const Shop: React.FC = () => {
   const navigate = useNavigate();
   return (
     <>
-      <Box sx={{ padding: "40px 0" }}>
+      <Box sx={{ padding: "40px 0" }} className="section">
         <Container>
           <Grid container>
             <Grid
-              item
-              xl={12}
-              lg={12}
-              md={12}
-              sm={12}
-              xs={12}
+              size={{ xl: 12, lg: 12, md: 12, sm: 12, xs: 12 }}
               style={{ textAlign: "center", marginBottom: "20px" }}
             >
               <Typography variant="h4" className="home-title">
@@ -45,12 +41,7 @@ const Shop: React.FC = () => {
             ) : (
               datas?.map((item: productsDetailData) => (
                 <Grid
-                  item
-                  xl={4}
-                  lg={4}
-                  md={6}
-                  sm={6}
-                  xs={12}
+                  size={{ xl: 4, lg: 4, md: 6, sm: 6, xs: 12 }}
                   key={item.id}
                   sx={{
                     padding: "0 15px",
@@ -67,7 +58,7 @@ const Shop: React.FC = () => {
                     </Box>
                     <Box sx={{ marginBottom: "10px" }}>
                       <Grid container>
-                        <Grid item xl={6} lg={6} md={6} sm={6} xs={6}>
+                        <Grid>
                           <Typography
                             variant="h6"
                             style={{ fontSize: "14px", color: "#000" }}
@@ -76,12 +67,7 @@ const Shop: React.FC = () => {
                           </Typography>
                         </Grid>
                         <Grid
-                          item
-                          xl={6}
-                          lg={6}
-                          md={6}
-                          sm={6}
-                          xs={6}
+                          size={{ xl: 6, lg: 6, md: 6, sm: 6, xs: 6 }}
                           style={{ textAlign: "right" }}
                         >
                           <Typography
@@ -95,7 +81,7 @@ const Shop: React.FC = () => {
                     </Box>
                     <Box>
                       <Grid container>
-                        <Grid item xl={12}>
+                        <Grid size={{ xl: 12, lg: 12, md: 12, sm: 12, xs: 12 }}>
                           <Link to={`/productdetail/${item.id}/${item.title}`}>
                             <Typography
                               variant="h2"
@@ -121,7 +107,7 @@ const Shop: React.FC = () => {
                       container
                       sx={{ alignItems: "center", marginTop: "20px" }}
                     >
-                      <Grid item xl={6} lg={6} md={6} sm={6} xs={6}>
+                      <Grid size={{ xl: 6, lg: 6, md: 6, sm: 6, xs: 6 }}>
                         <Button
                           variant="outlined"
                           color="success"
@@ -134,12 +120,7 @@ const Shop: React.FC = () => {
                         </Button>
                       </Grid>
                       <Grid
-                        item
-                        xl={6}
-                        lg={6}
-                        md={6}
-                        sm={6}
-                        xs={6}
+                        size={{ xl: 6, lg: 6, md: 6, sm: 6, xs: 6 }}
                         style={{ textAlign: "right" }}
                       >
                         <AddShoppingCartIcon
@@ -157,12 +138,7 @@ const Shop: React.FC = () => {
 
             {error ? (
               <Grid
-                item
-                xl={12}
-                lg={12}
-                md={12}
-                sm={12}
-                xs={12}
+                size={{ xl: 12, lg: 12, md: 12, sm: 12, xs: 12 }}
                 style={{ textAlign: "center", padding: "30px " }}
               >
                 "Something Went Wrong"

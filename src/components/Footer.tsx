@@ -1,5 +1,6 @@
 import React from "react";
-import { Box, Container, Grid, Typography } from "@mui/material";
+import { Box, Container, Typography } from "@mui/material";
+import Grid from "@mui/material/Grid2";
 import { YearFunc } from "../utils";
 const Footer: React.FC = () => {
   return (
@@ -8,12 +9,7 @@ const Footer: React.FC = () => {
         <Container>
           <Grid container>
             <Grid
-              item
-              xl={12}
-              lg={12}
-              md={12}
-              sm={12}
-              xs={12}
+              size={{ xl: 12, lg: 12, md: 12, sm: 12, xs: 12 }}
               sx={{ textAlign: "center" }}
             >
               <Typography
