@@ -1,9 +1,7 @@
 import React from "react";
-import { useEffect, useState } from "react";
-import { useAppDispatch, useAppSelector } from "../features/hooks";
-import { getProductsDataInList } from "../features/ProductsListSlice";
-import type { productsListDatas, CartData } from "../App.types";
-import { productDetailsFunc } from "../features/ProductsDetailsSlice";
+import { useState } from "react";
+import { useAppDispatch } from "../features/hooks";
+import type { productsDetailData, CartData } from "../App.types";
 import { Box, Container, Grid, Typography, Button } from "@mui/material";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import ProductsListSkeleton from "./ProductsListSkeleton";
@@ -14,15 +12,6 @@ import { useGetAllProductsQuery } from "../features/ApiSlice";
 import { useGetProductDetailQuery } from "../features/ApiSlice";
 const Shop: React.FC = () => {
   const dispatch = useAppDispatch();
-  // const datas = useAppSelector((state) => state.productsList.datas);
-  // const loading = useAppSelector((state) => state.productsList.loading);
-  // const error = useAppSelector((state) => state.productsList.error);
-  // useEffect(() => {
-  //   void dispatch(getProductsDataInList());
-  // }, [dispatch]);
-  // const productDetailEvent = (productId: number): void => {
-  //   void dispatch(productDetailsFunc(productId));
-  // };
   const [state, setState] = useState<number>(0);
   const { data: datas, isLoading, error } = useGetAllProductsQuery();
   const { data } = useGetProductDetailQuery(state, { skip: !state });
@@ -47,29 +36,33 @@ const Shop: React.FC = () => {
               xs={12}
               style={{ textAlign: "center", marginBottom: "20px" }}
             >
-              <Typography
-                variant="h4"
-                style={{ fontSize: "40px", fontWeight: "bold" }}
-              >
+              <Typography variant="h4" className="home-title">
                 Shop
               </Typography>
             </Grid>
             {isLoading ? (
               <ProductsListSkeleton />
             ) : (
-              datas?.map((item: productsListDatas) => (
-                <Grid item xl={4} lg={4} md={6} sm={6} xs={12} key={item.id}>
-                  <Box style={{ padding: "30px" }}>
+              datas?.map((item: productsDetailData) => (
+                <Grid
+                  item
+                  xl={4}
+                  lg={4}
+                  md={6}
+                  sm={6}
+                  xs={12}
+                  key={item.id}
+                  sx={{
+                    padding: "0 15px",
+                    marginBottom: "50px",
+                  }}
+                >
+                  <Box className="box">
                     <Box>
                       <img
                         src={item.image}
                         alt={item.title}
-                        style={{
-                          width: "100%",
-                          height: "300px",
-                          marginBottom: "20px",
-                          objectFit: "cover",
-                        }}
+                        className="image"
                       />
                     </Box>
                     <Box sx={{ marginBottom: "10px" }}>
@@ -107,11 +100,12 @@ const Shop: React.FC = () => {
                             <Typography
                               variant="h2"
                               style={{
-                                fontSize: "16px",
+                                fontSize: "20px",
                                 fontWeight: "bold",
-                                marginBottom: "20px",
                                 color: "#000",
+                                cursor: "pointer",
                                 textDecoration: "none",
+                                marginBottom: "15px",
                               }}
                               onClick={() => {
                                 productDetailEvent(item.id);
@@ -123,7 +117,10 @@ const Shop: React.FC = () => {
                         </Grid>
                       </Grid>
                     </Box>
-                    <Grid container>
+                    <Grid
+                      container
+                      sx={{ alignItems: "center", marginTop: "20px" }}
+                    >
                       <Grid item xl={6} lg={6} md={6} sm={6} xs={6}>
                         <Button
                           variant="outlined"

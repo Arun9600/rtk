@@ -1,30 +1,3 @@
-export interface productsListDatas {
-  id: number;
-  title: string;
-  price: string;
-  category: string;
-  image: string;
-}
-export interface productsSliceInitialState {
-  datas: [] | null;
-  loading: boolean;
-  error: string;
-}
-export interface productsCatergoriesSliceInitialState {
-  datas: [] | null;
-  loading: boolean;
-  error: string;
-}
-export interface limitResultsSliceInitialState {
-  datas: [] | null;
-  loading: boolean;
-  error: string;
-}
-export interface productsDetailsSliceInitialSlice {
-  datas: {} | null;
-  loading: boolean;
-  error: string;
-}
 export interface productsDetailData {
   id: number;
   title: string;

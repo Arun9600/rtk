@@ -14,15 +14,13 @@ const Home: React.FC = () => {
               item
               xl={12}
               md={12}
+              xs={12}
               style={{
                 textAlign: "center",
-                marginBottom: "10px",
+                marginBottom: "30px",
               }}
             >
-              <Typography
-                variant="h4"
-                style={{ fontSize: "40px", fontWeight: "bold" }}
-              >
+              <Typography variant="h4" className="home-title">
                 Our Products Categories
               </Typography>
             </Grid>
@@ -38,7 +36,11 @@ const Home: React.FC = () => {
                   sm={6}
                   xs={12}
                   key={item}
-                  style={{ textAlign: "center" }}
+                  style={{
+                    textAlign: "center",
+                    padding: "0 15px",
+                    marginBottom: "20px",
+                  }}
                 >
                   <Typography
                     variant="h4"
@@ -47,7 +49,6 @@ const Home: React.FC = () => {
                       fontWeight: "bold",
                       boxShadow: "0px 4px 8px rgba(142, 142, 142, 0.16)",
                       padding: "30px 0",
-                      margin: "20px",
                       backgroundColor: "#fff",
                     }}
                   >

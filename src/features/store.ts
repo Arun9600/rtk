@@ -1,6 +1,4 @@
 import { configureStore } from "@reduxjs/toolkit";
-import ProductsListSlice from "./ProductsListSlice";
-import ProductDetailsSlice from "./ProductsDetailsSlice";
 import CartSlice from "./CartSlice";
 import { useDispatch } from "react-redux";
 import { setupListeners } from "@reduxjs/toolkit/query";
@@ -8,8 +6,6 @@ import { productCategory } from "./ApiSlice";
 
 const store = configureStore({
   reducer: {
-    productsList: ProductsListSlice,
-    productDetails: ProductDetailsSlice,
     cart: CartSlice,
     [productCategory.reducerPath]: productCategory.reducer,
   },

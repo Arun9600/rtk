@@ -1,5 +1,5 @@
 import React from "react";
-import { useAppSelector, useAppDispatch } from "../features/hooks";
+import { useAppDispatch } from "../features/hooks";
 import { Typography, Box, Container, Grid, Button } from "@mui/material";
 import type { productsDetailData } from "../App.types";
 import { add } from "../features/CartSlice";
@@ -8,11 +8,6 @@ import { useGetProductDetailQuery } from "../features/ApiSlice";
 import { useParams } from "react-router-dom";
 const ProductDetails: React.FC = () => {
   const dispatch = useAppDispatch();
-  // const data = useAppSelector(
-  //   (state) => state.productDetails.datas
-  // ) as productsDetailData;
-  // const loading = useAppSelector((state) => state.productDetails.loading);
-  // const error = useAppSelector((state) => state.productDetails.error);
   const { id } = useParams();
   const { data, isLoading, error } = useGetProductDetailQuery(
     parseInt(id ?? "0", 10)

@@ -9,24 +9,31 @@ import Cart from "./components/Cart";
 const App: React.FC = () => {
   const theme = createTheme({
     typography: {
-      fontFamily: ["Poppins", "Open Sans", "Lora"].join(","),
+      fontFamily: [
+        "Poppins",
+        "Open Sans",
+        "Lora",
+        "Pacifico, cursive",
+        "Playwrite GB J, cursive",
+        "Sarabun, sans-serif",
+      ].join(","),
       h1: {
-        fontFamily: "Poppins",
+        fontFamily: "Sarabun, sans-serif",
       },
       h2: {
-        fontFamily: "Poppins",
+        fontFamily: "Sarabun, sans-serif",
       },
       h3: {
-        fontFamily: "Poppins",
+        fontFamily: "Sarabun, sans-serif",
       },
       h4: {
-        fontFamily: "Lora",
+        fontFamily: "Sarabun, sans-serif",
       },
       h5: {
-        fontFamily: "Poppins",
+        fontFamily: "Sarabun, sans-serif",
       },
       h6: {
-        fontFamily: "Poppins",
+        fontFamily: "Sarabun, sans-serif",
       },
       body1: {
         fontFamily: "Open Sans",

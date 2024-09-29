@@ -2,7 +2,7 @@ import React from "react";
 import { Box, Container, Grid, Typography, Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import type { productsListDatas } from "../App.types";
+import type { productsDetailData } from "../App.types";
 import ProductsListSkeleton from "./ProductsListSkeleton";
 import { Link } from "react-router-dom";
 import {
@@ -31,34 +31,44 @@ const ProductsLimit: React.FC = () => {
               md={12}
               sm={12}
               xs={12}
-              style={{ textAlign: "center" }}
+              style={{ textAlign: "center", marginBottom: "30px" }}
             >
-              <Typography
-                variant="h4"
-                style={{
-                  fontSize: "40px",
-                  fontWeight: "bold",
-                  textAlign: "center",
-                }}
-              >
+              <Typography variant="h4" className="home-title">
                 Our Top Products
               </Typography>
             </Grid>
             {isLoading ? (
               <ProductsListSkeleton />
             ) : (
-              data?.map((item: productsListDatas) => (
-                <Grid item xl={4} lg={4} md={4} sm={6} xs={12} key={item.id}>
-                  <Box sx={{ padding: "30px" }}>
+              data?.map((item: productsDetailData) => (
+                <Grid
+                  item
+                  xl={4}
+                  lg={4}
+                  md={6}
+                  sm={6}
+                  xs={12}
+                  key={item.id}
+                  sx={{
+                    padding: "0 15px",
+                    marginBottom: "50px",
+                  }}
+                >
+                  <Box
+                    sx={{
+                      padding: "30px 25px",
+                      boxShadow: "0px 4px 8px rgba(142, 142, 142, 0.16);",
+                      minHeight: "500px",
+                    }}
+                  >
                     <Box>
                       <img
                         src={item.image}
                         alt={item.title}
                         style={{
                           width: "100%",
-                          height: "300px",
+                          height: "325px",
                           marginBottom: "20px",
-                          objectFit: "cover",
                         }}
                       />
                     </Box>
@@ -67,17 +77,9 @@ const ProductsLimit: React.FC = () => {
                         <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
                           <Typography
                             variant="h6"
-                            style={{ fontSize: "14px", color: "#000" }}
+                            style={{ fontSize: "16px", color: "#000" }}
                           >
                             {item.category.toUpperCase()}
-                          </Typography>
-                        </Grid>
-                        <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
-                          <Typography
-                            variant="h6"
-                            style={{ fontSize: "14px", color: "#000" }}
-                          >
-                            Rs. {item.price}
                           </Typography>
                         </Grid>
                       </Grid>
@@ -94,15 +96,25 @@ const ProductsLimit: React.FC = () => {
                             <Typography
                               variant="h2"
                               style={{
-                                fontSize: "16px",
+                                fontSize: "20px",
                                 fontWeight: "bold",
                                 color: "#000",
                                 cursor: "pointer",
+                                textDecoration: "none",
+                                marginBottom: "15px",
                               }}
                             >
                               {item.title}
                             </Typography>
                           </Link>
+                        </Grid>
+                        <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
+                          <Typography
+                            variant="h6"
+                            style={{ fontSize: "18px", color: "#000" }}
+                          >
+                            Rs. {item.price}
+                          </Typography>
                         </Grid>
                       </Grid>
                     </Box>
@@ -140,6 +152,7 @@ const ProductsLimit: React.FC = () => {
                 >
                   <Button
                     color="success"
+                    sx={{ padding: "15px 25px", borderRadius: "8px" }}
                     variant="outlined"
                     onClick={() => {
                       navigate("/shop");

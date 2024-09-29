@@ -11,8 +11,15 @@ const TopArea: React.FC = () => {
             style={{ alignItems: "center", justifyContent: "center" }}
           >
             <Grid item xl={6} lg={6} md={6} sm={12} xs={12}>
-              <Typography variant="body1" style={{ color: "#fff" }}>
-                React with TypeScript
+              <Typography
+                variant="body1"
+                style={{
+                  color: "#fff",
+                  fontFamily: "Playwrite GB J, cursive",
+                  fontSize: "35px",
+                }}
+              >
+                Tsx eStore
               </Typography>
             </Grid>
             <Grid
@@ -22,7 +29,7 @@ const TopArea: React.FC = () => {
               md={6}
               sm={12}
               xs={12}
-              style={{ textAlign: "center" }}
+              style={{ textAlign: "right" }}
             >
               <Menu />
             </Grid>
