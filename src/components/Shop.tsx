@@ -14,15 +14,17 @@ import { useGetProductDetailQuery } from "../features/ApiSlice";
 const Shop: React.FC = () => {
   const dispatch = useAppDispatch();
   const [state, setState] = useState<number>(0);
+  const navigate = useNavigate();
   const { data: datas, isLoading, error } = useGetAllProductsQuery();
   const { data } = useGetProductDetailQuery(state, { skip: !state });
   const productDetailEvent = (id: number): void => {
     setState(id);
   };
+
   const addToCart = (data: CartData): void => {
     void dispatch(add(data));
   };
-  const navigate = useNavigate();
+
   return (
     <>
       <Box sx={{ padding: "40px 0" }} className="section">

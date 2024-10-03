@@ -15,7 +15,7 @@ export const productCategory = createApi({
       query: (id) => `/products/${id}`,
     }),
     getAllProducts: builder.query<productsDetailData[], void>({
-      query: () => "/products",
+      query: () => `/products`,
     }),
   }),
 });
