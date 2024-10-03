@@ -12,8 +12,6 @@ const App: React.FC = () => {
       fontFamily: [
         "Poppins",
         "Open Sans",
-        "Lora",
-        "Pacifico, cursive",
         "Playwrite GB J, cursive",
         "Sarabun, sans-serif",
       ].join(","),
