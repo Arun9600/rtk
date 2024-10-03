@@ -13,6 +13,8 @@ import { useGetAllProductsQuery } from "../features/ApiSlice";
 import { useGetProductDetailQuery } from "../features/ApiSlice";
 const Shop: React.FC = () => {
   const dispatch = useAppDispatch();
+  const [page, setPage] = useState(1);
+  const limit = 6;
   const [state, setState] = useState<number>(0);
   const navigate = useNavigate();
   const { data: datas, isLoading, error } = useGetAllProductsQuery();
@@ -20,6 +22,10 @@ const Shop: React.FC = () => {
   const productDetailEvent = (id: number): void => {
     setState(id);
   };
+
+  const totalPages = Math.ceil((datas?.length ?? 0) / limit);
+
+  const paginatedProducts = datas?.slice((page - 1) * limit, page * limit);
 
   const addToCart = (data: CartData): void => {
     void dispatch(add(data));
@@ -41,7 +47,7 @@ const Shop: React.FC = () => {
             {isLoading ? (
               <ProductsListSkeleton />
             ) : (
-              datas?.map((item: productsDetailData) => (
+              paginatedProducts?.map((item: productsDetailData) => (
                 <Grid
                   size={{ xl: 4, lg: 4, md: 6, sm: 6, xs: 12 }}
                   key={item.id}
@@ -109,7 +115,7 @@ const Shop: React.FC = () => {
                       container
                       sx={{ alignItems: "center", marginTop: "20px" }}
                     >
-                      <Grid size={{ xl: 6, lg: 6, md: 6, sm: 6, xs: 6 }}>
+                      <Grid size={{ xl: 6, lg: 6, md: 6, sm: 6, xs: 8 }}>
                         <Button
                           variant="outlined"
                           color="success"
@@ -122,7 +128,7 @@ const Shop: React.FC = () => {
                         </Button>
                       </Grid>
                       <Grid
-                        size={{ xl: 6, lg: 6, md: 6, sm: 6, xs: 6 }}
+                        size={{ xl: 6, lg: 6, md: 6, sm: 6, xs: 4 }}
                         style={{ textAlign: "right" }}
                       >
                         <AddShoppingCartIcon
@@ -137,6 +143,27 @@ const Shop: React.FC = () => {
                 </Grid>
               ))
             )}
+
+            <Box sx={{ textAlign: "center", width: "100%" }}>
+              {/* Pagination Controls */}
+              <Button
+                disabled={page === 1}
+                onClick={() => setPage((prev) => prev - 1)}
+                variant="contained"
+              >
+                Previous
+              </Button>
+              <span style={{ margin: "0 15px" }}>
+                Page {page} of {totalPages}
+              </span>
+              <Button
+                disabled={page === totalPages}
+                onClick={() => setPage((prev) => prev + 1)}
+                variant="contained"
+              >
+                Next
+              </Button>
+            </Box>
 
             {error ? (
               <Grid
