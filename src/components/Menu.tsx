@@ -16,7 +16,11 @@ const Menu: React.FC = () => {
         <li>
           <Link to="/cart">
             <AddShoppingCartIcon />
-            {data?.length}
+            {data?.length === 0 ? (
+              ""
+            ) : (
+              <span className="cart-count">{data?.length}</span>
+            )}
           </Link>
         </li>
       </ul>

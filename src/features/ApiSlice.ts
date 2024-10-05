@@ -5,9 +5,6 @@ export const productCategory = createApi({
   reducerPath: "productCategory",
   baseQuery: fetchBaseQuery({ baseUrl: "https://fakestoreapi.com" }),
   endpoints: (builder) => ({
-    getProductCategory: builder.query<string[], void>({
-      query: () => "/products/categories",
-    }),
     getLimitedProducts: builder.query<limitResult[], void>({
       query: () => "/products?limit=6",
     }),
@@ -17,12 +14,27 @@ export const productCategory = createApi({
     getAllProducts: builder.query<productsDetailData[], void>({
       query: () => `/products`,
     }),
+    getCategoryJewels: builder.query<productsDetailData[], void>({
+      query: () => `/products/category/jewelery`,
+    }),
+    getCategoryElectronics: builder.query<productsDetailData[], void>({
+      query: () => `/products/category/electronics`,
+    }),
+    getCategoryMens: builder.query<productsDetailData[], void>({
+      query: () => `/products/category/men's clothing`,
+    }),
+    getCategoryWoMens: builder.query<productsDetailData[], void>({
+      query: () => `/products/category/women's clothing`,
+    }),
   }),
 });
 
 export const {
-  useGetProductCategoryQuery,
   useGetLimitedProductsQuery,
+  useGetCategoryElectronicsQuery,
   useGetProductDetailQuery,
   useGetAllProductsQuery,
+  useGetCategoryJewelsQuery,
+  useGetCategoryMensQuery,
+  useGetCategoryWoMensQuery,
 } = productCategory;
