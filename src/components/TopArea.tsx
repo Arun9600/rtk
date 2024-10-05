@@ -23,7 +23,7 @@ const TopArea: React.FC = () => {
                   fontSize: "35px",
                 }}
               >
-                Tsx eStore
+                eShop
               </Typography>
             </Grid>
             <Grid
