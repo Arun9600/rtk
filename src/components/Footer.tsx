@@ -1,7 +1,6 @@
 import React from "react";
 import { Box, Container, Typography } from "@mui/material";
 import Grid from "@mui/material/Grid2";
-import { YearFunc } from "../utils";
 const Footer: React.FC = () => {
   return (
     <>
@@ -16,7 +15,7 @@ const Footer: React.FC = () => {
                 variant="body1"
                 style={{ color: "#fff", fontSize: "14px" }}
               >
-                Copyrights &copy; {YearFunc()} Designed and Developed by Arun
+                eShop - Designed and Developed by Arun
               </Typography>
             </Grid>
           </Grid>
